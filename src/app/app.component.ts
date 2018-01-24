@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FetchAdrService } from '../app/services/fetch-adr.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Adv Request Visualization App';
+  title = 'AD REQUEST DASHBOARD';
+  from:any;
+  to:any;
+
+  constructor(private fetchAdrSrvice:FetchAdrService){}
+
+  callAPI(){
+    this.fetchAdrSrvice.getAdr(this.from,this.to);
+  }
 }

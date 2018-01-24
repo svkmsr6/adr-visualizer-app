@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { FormsModule } from '@angular/forms';
+import { FetchAdrService } from '../app/services/fetch-adr.service';
 
 import { AppComponent } from './app.component';
 
@@ -10,9 +11,10 @@ import { AppComponent } from './app.component';
     AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [FetchAdrService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
