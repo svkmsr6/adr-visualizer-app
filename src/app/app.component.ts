@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FetchAdrService } from '../app/services/fetch-adr.service';
+import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'app-root',
@@ -7,13 +8,17 @@ import { FetchAdrService } from '../app/services/fetch-adr.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'AD REQUEST DASHBOARD';
+  title = 'ADR REQUEST DASHBOARD';
   from:any;
   to:any;
+  adrData:any;
 
   constructor(private fetchAdrSrvice:FetchAdrService){}
 
   callAPI(){
-    this.fetchAdrSrvice.getAdr(this.from,this.to);
+    this.fetchAdrSrvice.getAdr(this.from,this.to)
+      .subscribe(res => {
+        this.adrData = res.data;        
+      });
   }
 }
