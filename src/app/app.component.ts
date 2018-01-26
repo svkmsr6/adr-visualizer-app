@@ -20,7 +20,12 @@ export class AppComponent {
   
 
   constructor(private fetchAdrSrvice:FetchAdrService){}
-
+  
+  /**
+   * API to resolve data fetched from dashboard API
+   * @author svkmsr6  
+   * @returns none
+   */
   callAPI(){
     let adrObservable:any = this.fetchAdrSrvice.getAdr(this.from,this.to);
     if(adrObservable){

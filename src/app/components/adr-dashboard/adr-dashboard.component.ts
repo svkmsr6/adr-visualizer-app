@@ -34,10 +34,8 @@ export class AdrDashboardComponent implements OnInit {
   
   constructor() { }
 
-  ngOnInit() {
-     
-  }
-
+  ngOnInit() { }
+  
   ngOnChanges(changes: SimpleChanges) {
     //for (let propName in changes) {
       let chngObj = changes['chartData'];
