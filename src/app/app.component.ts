@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FetchAdrService } from '../app/services/fetch-adr.service';
-import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'app-root',
