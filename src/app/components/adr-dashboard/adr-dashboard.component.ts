@@ -10,6 +10,7 @@ export class AdrDashboardComponent implements OnInit {
 
   @Input()chartData:Array<any>;
   enableChart:boolean = false;
+  placeHolderMsg:string = 'NO RESULTS TO BE DISPLAYED!';
   adrChart:Chart;
   adrChartConfig:any = {
     chart: {
@@ -41,12 +42,17 @@ export class AdrDashboardComponent implements OnInit {
     //for (let propName in changes) {
       let chngObj = changes['chartData'];
       let dataArray  = chngObj.currentValue;
-      if(dataArray){
+      if(dataArray && dataArray.map){
         this.adrChartConfig.xAxis.categories = dataArray.map(item =>item.date);
         this.adrChartConfig.series[0].data = dataArray.map(item =>item.adrequest);
         this.adrChart = new Chart(this.adrChartConfig);
         this.enableChart = true;
-      }     
+      }
+      else{
+        if(dataArray)
+          this.placeHolderMsg = dataArray.msg;
+        this.enableChart = false;
+      }    
     //}
    }
 

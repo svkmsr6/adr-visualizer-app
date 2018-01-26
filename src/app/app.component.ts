@@ -16,9 +16,17 @@ export class AppComponent {
   constructor(private fetchAdrSrvice:FetchAdrService){}
 
   callAPI(){
-    this.fetchAdrSrvice.getAdr(this.from,this.to)
-      .subscribe(res => {
-        this.adrData = res.data;        
-      });
+    let adrObservable:any = this.fetchAdrSrvice.getAdr(this.from,this.to);
+    if(adrObservable){
+      adrObservable.subscribe(
+        res => {
+          this.adrData = res.data;        
+        },
+        err => {
+          console.log('Data Fetch error',err);
+          this.adrData = { msg: err._body || '503 Service unavailable', errorCode: 503 || err.status };
+        }
+      );
+    }     
   }
 }
