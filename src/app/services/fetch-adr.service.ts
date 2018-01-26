@@ -9,9 +9,14 @@ import 'rxjs/add/observable/throw';
 export class FetchAdrService {
 
   constructor(private http:Http) { }
-
-  dateMsg:string = '1.To date must be later than the From date\n2.Both must be on or before the current date\n3.No empty dates allowed';
-
+    
+  /**
+   * API to validate whether from date is earlier than to date
+   * @author svkmsr6
+   * @param {string} from From date
+   * @param {string} to To date
+   * @returns {boolean} True or False
+   */
   validate = (from,to) =>{
     if((from && from !='')&&(to && to !='')){
       let fromDate = from.split('-');
@@ -35,6 +40,13 @@ export class FetchAdrService {
     }
   }
 
+  /**
+   * API to validate whether from date and to date are not in the future
+   * @author svkmsr6
+   * @param {string} from From date
+   * @param {string} to To date
+   * @returns {boolean} True or False
+   */  
 notFutureDate(from:string,to:string){
     if(this.validate(from,to)){
       let currentDate:any = new Date().getTime();
@@ -48,6 +60,13 @@ notFutureDate(from:string,to:string){
       return false;
   }
 
+   /**
+   * API to fetch ADR from date and to date are not in the future
+   * @author svkmsr6
+   * @param {string} from From date
+   * @param {string} to To date
+   * @returns {Observable} Observable for ADR data
+   */
   getAdr(from:string,to:string):Observable<any>{
     //console.log('Details from '+from+' to '+to);
     if(this.notFutureDate(from,to)){
@@ -55,12 +74,12 @@ notFutureDate(from:string,to:string){
       return this.http.get(apiURL).
         map((res:Response) =>res.json()).
         catch((err:any) =>{
-          console.log('Error Catch', err);
+          //console.log('Error Catch', err);
           return Observable.throw(err);
         });
       }   
     else{
-      alert(this.dateMsg);
+      return Observable.throw({_body:'Invalid Date(s) entered',status:-1});
     }     
   }
 

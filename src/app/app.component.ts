@@ -12,6 +12,12 @@ export class AppComponent {
   from:any;
   to:any;
   adrData:any;
+  showError:boolean = false;
+  dateMsg:string = `<h4>INPUT GUIDELINES</h4>
+  1.To date must be later than the From date<br/>
+  2.Both must be on or before the current date<br/>
+  3.No empty dates allowed`;
+  
 
   constructor(private fetchAdrSrvice:FetchAdrService){}
 
@@ -20,11 +26,18 @@ export class AppComponent {
     if(adrObservable){
       adrObservable.subscribe(
         res => {
+          console.log(res);
           this.adrData = res.data;        
         },
         err => {
-          console.log('Data Fetch error',err);
-          this.adrData = { msg: err._body || '503 Service unavailable', errorCode: 503 || err.status };
+          console.log('Data Fetch error',err.status);
+          if(err.status == 0)
+            this.adrData = { msg: 'Network Connectivity Error', errorCode: err.status };
+          else if(err.status == -1){
+            this.adrData = { msg: this.dateMsg , errorCode: err.status };
+          }
+          else
+            this.adrData = { msg: err._body , errorCode: err.status };
         }
       );
     }     

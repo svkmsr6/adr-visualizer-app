@@ -2,9 +2,7 @@
     <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2">
         <div [chart]="adrChart" *ngIf="enableChart;else noResults"></div>
         <ng-template #noResults>
-            <div class="jumbotron col-xs-8 col-sm-8 col-md-8 col-sm-offset-2 col-md-offset-2 centric">
-                <h4>{{placeHolderMsg}}</h4>
-            </div>                
+            <div [innerHTML] = "placeHolderMsg" class="jumbotron col-xs-8 col-sm-8 col-md-8 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 centric"></div>                
         </ng-template>
     </div>
 </div>

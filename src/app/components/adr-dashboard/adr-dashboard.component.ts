@@ -10,7 +10,7 @@ export class AdrDashboardComponent implements OnInit {
 
   @Input()chartData:Array<any>;
   enableChart:boolean = false;
-  placeHolderMsg:string = 'NO RESULTS TO BE DISPLAYED!';
+  placeHolderMsg:string = 'ADR TREND RESULT GOES HERE';  
   adrChart:Chart;
   adrChartConfig:any = {
     chart: {
