@@ -70,7 +70,7 @@ notFutureDate(from:string,to:string){
   getAdr(from:string,to:string):Observable<any>{
     //console.log('Details from '+from+' to '+to);
     if(this.notFutureDate(from,to)){
-      let apiURL = 'http://104.197.128.152/data/adrequests?from='+from+'&to='+to;
+      let apiURL = '/api/data/adrequests?from='+from+'&to='+to;
       return this.http.get(apiURL).
         map((res:Response) =>res.json()).
         catch((err:any) =>{
