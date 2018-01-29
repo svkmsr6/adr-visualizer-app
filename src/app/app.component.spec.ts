@@ -30,7 +30,7 @@ describe('AppComponent', () => {
       ]
     }).compileComponents();
   }));
-  
+
   it('should create the app', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
@@ -40,5 +40,5 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app.title).toEqual('ADR REQUEST DASHBOARD');
-  })); 
+  }));
 });
